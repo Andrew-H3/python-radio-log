@@ -3,50 +3,76 @@
 #Andrew-H3 GitHub
 
 import csv
+from sys import argv
 
 def main():
+	if (len(argv)) == 1:
+		helptext()
+
+	else:
+		startup()
+
+
+def startup():
     print('Python Radio Log 0.1')
-    choice = input('new - new entry\nread - read old entrys\nquit - quit\n')
-    if choice == 'new':
+    if argv[1] == 'new':
         makeNewEntry()
 
-    elif choice == 'read':
+    elif argv[1] == 'read':
         readOldEntries()
 
-    elif choice == 'quit':
-        exit()
-
     else:
-        print('Choice not recognized')
-        main()
+        help()
+
+
+def helptext():
+	print('''
+usage: prcl <command>
+
+new  - create a new log
+read - read existing logs
+''')
+	exit(0)
+
 
 
 def makeNewEntry():
-    callSign = input('Call Sign: ')
-    frequency = input('Frequency: ')
-    date = input('Date: ')
-    time = input('Time: ')
-    location = input('Location: ')
-    notes = input('Notes: ')
-    print('Is this correct?','\nCall Sign:',callSign,'\nFrequency:',frequency,'\nDate:',date,'\nTime:',time,'\nLocation:',location,'\nNotes: ', notes)
-    isCorrect = input('yes or no\n')
-    if isCorrect == 'yes':
-        with open('log', 'a') as csvfile:
-            writeData = csv.writer(csvfile)
-            writeData.writerow([callSign,frequency,date,time,location,notes,])
-        main()
+	callSign = input('Call Sign: ')
+	frequency = input('Frequency: ')
+	date = input('Date: ')
+	time = input('Time: ')
+	location = input('Location: ')
+	notes = input('Notes: ')
+	print('Is this correct?','\nCall Sign:',callSign,'\nFrequency:',frequency,'\nDate:',date,'\nTime:',time,'\nLocation:',location,'\nNotes: ', notes)
+	isCorrect = input('y or n\n')
+	if isCorrect == 'y':
+		with open('log', 'a') as csvfile:
+			writeData = csv.writer(csvfile)
+			writeData.writerow([callSign,frequency,date,time,location,notes,])
+		addAnother()
+
+	elif isCorrect == 'n':
+		print('Sorry, please try again.')
+		addAnother()
+
+	else:
+		print('Input not recognized')
+		addAnother()
+
+
+def addAnother():
+	choice = input('Would you like to start a new log?\ny or n\n')
+	if choice == 'y':
+		makeNewEntry()
+
+	elif choice == 'n':
+		exit()
+
+	else:
+		print('Invalid option. Quitting...')
 
 
 
-        
-    elif isCorrect == 'no':
-        print('Sorry, please try again.')
-        main()
-
-    else:
-        print('Input not recognized')
-        main()
-        
 def readOldEntries():
     print('read success')
 
