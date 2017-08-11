@@ -4,6 +4,7 @@
 
 import csv
 import sys
+from time import strftime
 
 def main():
 	if (len(sys.argv)) == 1:
@@ -39,8 +40,16 @@ read - read existing logs
 def makeNewEntry():
 	callSign = input('Call Sign: ')
 	frequency = input('Frequency: ')
-	date = input('Date: ')
-	time = input('Time: ')
+	date0 = input('Date (leave blank for current date): ')
+	if not date0:
+		date = strftime("%m/%d/%Y")
+	else:
+		date = date0
+	time0 = input('Time (leave blank for current time): ')
+	if not time0:
+		time = strftime("%H:%M")
+	else:
+		time = time0
 	location = input('Location: ')
 	notes = input('Notes: ')
 	print('Is this correct?','\nCall Sign:',callSign,'\nFrequency:',frequency,'\nDate:',date,'\nTime:',time,'\nLocation:',location,'\nNotes: ', notes)
