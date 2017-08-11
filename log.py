@@ -47,7 +47,7 @@ def makeNewEntry():
 	isCorrect = input('y or n\n')
 	if isCorrect == 'y':
 		with open('log', 'a') as csvfile:
-			writeData = csv.writer(csvfile)
+			writeData = csv.writer(csvfile, delimiter='~')
 			writeData.writerow([callSign,frequency,date,time,location,notes,])
 		addAnother()
 
@@ -74,7 +74,12 @@ def addAnother():
 
 
 def readOldEntries():
-    print('read success')
+	print('made it this far :)')
+	with open('log', newline='') as csvfile:
+		reader = csv.reader(csvfile, delimiter='~')
+		for row in reader:
+			print(', '.join(row))
+	sys.exit()
 
 
 main()
