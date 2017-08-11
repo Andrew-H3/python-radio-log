@@ -3,10 +3,10 @@
 #Andrew-H3 GitHub
 
 import csv
-from sys import argv
+import sys
 
 def main():
-	if (len(argv)) == 1:
+	if (len(sys.argv)) == 1:
 		helptext()
 
 	else:
@@ -15,10 +15,10 @@ def main():
 
 def startup():
     print('Python Radio Log 0.1')
-    if argv[1] == 'new':
+    if sys.argv[1] == 'new':
         makeNewEntry()
 
-    elif argv[1] == 'read':
+    elif sys.argv[1] == 'read':
         readOldEntries()
 
     else:
@@ -32,7 +32,7 @@ usage: prcl <command>
 new  - create a new log
 read - read existing logs
 ''')
-	exit(0)
+	sys.exit(0)
 
 
 
@@ -66,7 +66,7 @@ def addAnother():
 		makeNewEntry()
 
 	elif choice == 'n':
-		exit()
+		sys.exit()
 
 	else:
 		print('Invalid option. Quitting...')
