@@ -5,35 +5,41 @@
 import csv
 import sys
 from time import strftime
+import argparse
 
 def main():
-	if (len(sys.argv)) == 1:
-		helptext()
+	parser = argparse.ArgumentParser(description="log radio contacts")
+	parser.add_argument("command", help="what you want to do", choices=["new", "read"])
+	args = parser.parse_args()
+	if args.command == "new":
+		makeNewEntry()
 
-	else:
-		startup()
-
-
-def startup():
-    print('Python Radio Log 0.1')
-    if sys.argv[1] == 'new':
-        makeNewEntry()
-
-    elif sys.argv[1] == 'read':
-        readOldEntries()
-
-    else:
-        help()
+	elif args.command == "read":
+		readOldEntries()
 
 
-def helptext():
-	print('''
-usage: prcl <command>
 
-new  - create a new log
-read - read existing logs
-''')
-	sys.exit(0)
+# old arg system - replaced by argparse
+#def startup():
+#    print('Python Radio Log 0.1')
+#    if sys.argv[1] == 'new':
+#        makeNewEntry()
+#
+#    elif sys.argv[1] == 'read':
+#        readOldEntries()
+#
+#    else:
+#        help()
+
+# old help system - replaced by argparse
+#def helptext():
+#	print('''
+#usage: prcl <command>
+#
+#new  - create a new log
+#read - read existing logs
+#''')
+#	sys.exit(0)
 
 
 
