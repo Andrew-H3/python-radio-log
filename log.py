@@ -19,30 +19,6 @@ def main():
 
 
 
-# old arg system - replaced by argparse
-#def startup():
-#    print('Python Radio Log 0.1')
-#    if sys.argv[1] == 'new':
-#        makeNewEntry()
-#
-#    elif sys.argv[1] == 'read':
-#        readOldEntries()
-#
-#    else:
-#        help()
-
-# old help system - replaced by argparse
-#def helptext():
-#	print('''
-#usage: prcl <command>
-#
-#new  - create a new log
-#read - read existing logs
-#''')
-#	sys.exit(0)
-
-
-
 def makeNewEntry():
 	callSign = input('Call Sign: ')
 	frequency = input('Frequency: ')
@@ -75,6 +51,7 @@ def makeNewEntry():
 		addAnother()
 
 
+
 def addAnother():
 	choice = input('Would you like to start a new log?\ny or n\n')
 	if choice == 'y':
@@ -86,6 +63,7 @@ def addAnother():
 	else:
 		print('Invalid option. Quitting...')
 		sys.exit()
+
 
 
 def readOldEntries():
