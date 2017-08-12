@@ -85,7 +85,7 @@ def addAnother():
 
 	else:
 		print('Invalid option. Quitting...')
-
+		sys.exit()
 
 
 def readOldEntries():
