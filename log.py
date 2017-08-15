@@ -6,14 +6,18 @@ import csv
 import sys
 from time import strftime
 import argparse
+import ncmode
 
 def main():
 	parser = argparse.ArgumentParser(description="log radio contacts")
 	parser.add_argument("command", help="what you want to do", choices=["new", "read"])
+	parser.add_argument("-n", help="mode for net controllers to log many contacts at once", default=1)
 	args = parser.parse_args()
 	if args.command == "new":
-		makeNewEntry()
-
+		if args.n:
+			ncmode.ncMode()
+		else:
+			makeNewEntry()
 	elif args.command == "read":
 		readOldEntries()
 
